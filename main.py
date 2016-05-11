@@ -43,9 +43,9 @@ def main():
 
 
 def on_message(message, client):
-    if isinstance(message, chatexchange.events.UserMentioned):
-      print("New ping")
-      message.message.reply("Y U PING ME?!!")
+    if isinstance(event, ChatExchange.chatexchange.events.MessagePosted):
+      if message.content.startswith(":pull") and message.user.id == 3285730:
+        os._exit(3)
 
 #Yay, logging!
  
