@@ -49,12 +49,17 @@ def main():
   os._exit(6)
 
 def on_message(message, client):
-    if isinstance(message, chatexchange.events.MessagePosted):
-      print "MESSAGE"
-      if message.content.startswith(":pull"):
-        print "USER PULL: "+message.user.id
-        if message.user.id == 3285730:
-          os._exit(3)
+  if not isinstance(message, chatexchange.events.MessagePosted):
+    # Ignore non-message_posted events.
+    logger.debug("event: %r", message)
+    return
+
+  print ""
+  print ">> (%s) %s" % (message.user.name, message.content)
+  if message.content.startswith('!!/random'):
+    print message
+    print "Spawning thread"
+    message.message.reply(str(random.random()))
 
 #Yay, logging!
  
