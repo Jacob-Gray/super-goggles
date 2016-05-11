@@ -36,15 +36,15 @@ def main():
   
   room.watch(on_message)
   
-  
-  print "(You are now in room #%s on %s.)" % (111583, "stackoverflow.com") #this is, of course temporary
-  
-  room.send_message("Bot Started")
-  while True:
-      message = raw_input("<< ")
-      room.send_message(message)
 
-  client.logout()
+  def ex():
+    x = raw_input(">_ ")
+    if x != "exit":
+      client.logout()
+    else:
+      ex()
+
+  
 
 
 def on_message(message, client):
