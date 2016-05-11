@@ -38,14 +38,14 @@ def main():
   
   while True:
     message = raw_input("<< ")
-      if message == "die":
-        room.send_message("Shutting down...")
-        time.sleep(0.4)
-        break
-      else:
-        room.send_message(message)
+    if message == "die":
+      room.send_message("Shutting down...")
+      time.sleep(0.4)
+      break
+    else:
+      room.send_message(message)
 
-    os._exit(6)
+  os._exit(6)
 
 def on_message(message, client):
     if isinstance(message, chatexchange.events.MessagePosted):
