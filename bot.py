@@ -1,7 +1,7 @@
 import ChatExchange.chatexchange.client
 import ChatExchange.chatexchange.events
 
-global rooms = {}
+rooms = {}
 
 def join(client, room_id, listen):
   room = client.get_room(room_id)
