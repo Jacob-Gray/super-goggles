@@ -4,6 +4,7 @@ import logging.handlers
 import os
 import random
 import sys
+import bot
 
 import chatexchange.client
 import chatexchange.events
