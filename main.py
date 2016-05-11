@@ -34,7 +34,7 @@ def main():
   
   if "first_start" in sys.argv:
     commit = os.popen('git log --pretty=format:"%h" -n 1').read()
-    room.send_message("Super-goggles is up! Running on commit: [`" + commit + "`](https://github.com/Jacob-Gray/super-goggles/commit/"+commit+")")
+    room.send_message("Super Goggles is up! Running on commit: [`" + commit + "`](https://github.com/Jacob-Gray/super-goggles/commit/"+commit+")")
   
   room.watch(on_message)
   
@@ -49,6 +49,12 @@ def main():
 
   os._exit(6)
 
+
+# check if a command is valid
+# def check(c,c2):
+#   commandList = ["pull","help"]
+#   if commandList.index(c
+  
 def on_message(message, client):
   if not isinstance(message, ChatExchange.chatexchange.events.MessagePosted):
     # Ignore non-message_posted events.
@@ -56,10 +62,11 @@ def on_message(message, client):
     return
 
   if message.content.startswith('sg '):
-    print(message.content.split()[1])
+
     if message.content.split()[1] == "pull":
       message.message.reply("`git pull` from [`https://github.com/Jacob-Gray/super-goggles/`](https://github.com/Jacob-Gray/super-goggles/)")
       os._exit(3)
+      
     else:
       message.message.reply("`"+message.content+"` isn't a valid command.")
 
