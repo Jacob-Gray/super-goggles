@@ -55,16 +55,14 @@ def on_message(message, client):
     logger.debug("event: %r", message)
     return
 
-  print ""
-  print ">> (%s) %s" % (message.user.name, message.content)
-  if message.content.startswith('sg random'):
-    print message
-    print "Spawning thread"
-    message.message.reply(str(random.random()))
-  
-  elif message.content.startswith('sg pull'):
-    message.message.reply("`git pull` from [`https://github.com/Jacob-Gray/super-goggles/`](https://github.com/Jacob-Gray/super-goggles/)")
-    os._exit(3)
+  if message.content.startswith('sg'):
+    if(message.content.split()[:1] === "pull":
+      message.message.reply("`git pull` from [`https://github.com/Jacob-Gray/super-goggles/`](https://github.com/Jacob-Gray/super-goggles/)")
+      os._exit(3)
+    else:
+      message.message.reply("`"+message.content.split()[:1]+"` isn't a valid command.")
+
+    
 
 #Yay, logging!
  
