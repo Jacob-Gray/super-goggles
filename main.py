@@ -71,6 +71,7 @@ def on_message(message, client):
     if command == "join":
       room_id = int(message.content.split()[2])
       bot.join(client, room_id, on_message)
+      message.message.reply("I am now listening in room [`#"+room_id+"`](http://chat.stackoverflow.com/rooms/"+room_id+")")
     else:
       message.message.reply("`"+message.content+"` isn't a valid command.")
 
