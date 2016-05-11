@@ -15,9 +15,19 @@ logger = logging.getLogger(__name__)
 
 def main():
   setup_logging()
-  email = raw_input(">> What is your email? \n")
-  pswd = raw_input(">> What is your password? \n")
-  client = user.user("stackoverflow.com",email,pswd);
+  
+  if 'ChatExchangeU' in os.environ:
+    email = os.environ['ChatExchangeU']
+  else:
+    email = raw_input(">> What is your email? \n")
+  
+  if 'ChatExchangeP' in os.environ:
+    password = os.environ['ChatExchangeP']
+  else:
+    password = raw_input(">> What is your password? \n")
+  
+  client = user.user("stackoverflow.com",email,password);
+  
   room = client.get_room(111583)
   room.join()
   room.watch(on_message)
