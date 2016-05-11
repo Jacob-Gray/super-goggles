@@ -33,7 +33,7 @@ def main():
   room.join()
   
   if "first_start" in sys.argv:
-    coomit = os.popen('git log --pretty=format:"%h" -n 1').read()
+    commit = os.popen('git log --pretty=format:"%h" -n 1').read()
     room.send_message("Super-goggles is up! Running on commit: [`" + commit + "`](https://github.com/Jacob-Gray/super-goggles/commit/"+commit+")")
   
   room.watch(on_message)
