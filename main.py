@@ -74,6 +74,7 @@ def on_message(message, client):
       r.send_message("Hey guys, I joined by request of [@"+message.user.name.replace(" ","")+"](http://stackoverflow.com/users/"+str(message.user.id)+")")
       message.message.reply("I am now listening in room [`#"+str(room_id)+"`](http://chat.stackoverflow.com/rooms/"+str(room_id)+")")
     elif command == "leave":
+      print message.room.id
       bot.leave(message.room.id)
     else:
       message.message.reply("`"+message.content+"` isn't a valid command.")
