@@ -8,8 +8,8 @@ import bot
 import user
 import time
 
-import chatexchange.client
-import chatexchange.events
+import ChatExchange.chatexchange.client
+import ChatExchange.chatexchange.events
 
 
 logger = logging.getLogger(__name__)
@@ -49,7 +49,7 @@ def main():
   os._exit(6)
 
 def on_message(message, client):
-  if not isinstance(message, chatexchange.events.MessagePosted):
+  if not isinstance(message, ChatExchange.chatexchange.events.MessagePosted):
     # Ignore non-message_posted events.
     logger.debug("event: %r", message)
     return
