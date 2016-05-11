@@ -33,7 +33,7 @@ def main():
 
 
 def on_message(message, client):
-    if isinstance(message, chatexchange.events.UserMentioned):
+    if isinstance(message, chatexchange.events.MessageReply):
       message.message.reply("Y U PING ME?!!")
 
 #Yay, logging!
