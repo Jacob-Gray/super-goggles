@@ -1,4 +1,15 @@
- 
+import getpass
+import logging
+import logging.handlers
+import os
+import random
+import sys
+
+import chatexchange.client
+import chatexchange.events
+
+
+logger = logging.getLogger(__name__)
 
 def main():
   setup_logging()
