@@ -55,7 +55,7 @@ def on_message(message, client):
     logger.debug("event: %r", message)
     return
 
-  if message.content.startswith('sg'):
+  if message.content.startswith('sg '):
     if message.content.split()[:1] == "pull":
       message.message.reply("`git pull` from [`https://github.com/Jacob-Gray/super-goggles/`](https://github.com/Jacob-Gray/super-goggles/)")
       os._exit(3)
