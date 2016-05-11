@@ -33,7 +33,8 @@ def main():
   room.join()
   
   if "first_start" in sys.argv:
-    room.send_message("Super-goggles is up! running on commit: " + os.popen('git log --pretty=format:"%h" -n 1').read() + ")")
+    coomit = os.popen('git log --pretty=format:"%h" -n 1').read()
+    room.send_message("Super-goggles is up! Running on commit: [`" + commit + "`](https://github.com/Jacob-Gray/super-goggles/commit/"+commit+")")
   
   room.watch(on_message)
   
@@ -56,12 +57,12 @@ def on_message(message, client):
 
   print ""
   print ">> (%s) %s" % (message.user.name, message.content)
-  if message.content.startswith('!!/random'):
+  if message.content.startswith('sg random'):
     print message
     print "Spawning thread"
     message.message.reply(str(random.random()))
   
-  elif message.content.startswith('!!/pull'):
+  elif message.content.startswith('sg pull'):
     message.message.reply("`git pull` from [`https://github.com/Jacob-Gray/super-goggles/`](https://github.com/Jacob-Gray/super-goggles/)")
     os._exit(3)
 
