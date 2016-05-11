@@ -6,6 +6,7 @@ import random
 import sys
 import bot
 import user
+import time
 
 import chatexchange.client
 import chatexchange.events
