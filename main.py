@@ -26,14 +26,16 @@ def main():
   else:
     password = raw_input(">> What is your password? \n")
     
-  if "first_start" in sys.argv:
-    room.send_message("Super-goggles is up! running on commit: " + os.popen('git log --pretty=format:"%h" -n 1').read() + ")")
-  
   client = user.user("stackoverflow.com",email,password);
   
   room = client.get_room(111583)
   room.join()
+  
+  if "first_start" in sys.argv:
+    room.send_message("Super-goggles is up! running on commit: " + os.popen('git log --pretty=format:"%h" -n 1').read() + ")")
+  
   room.watch(on_message)
+  
   
   print "(You are now in room #%s on %s.)" % (111583, "stackoverflow.com") #this is, of course temporary
   
@@ -47,8 +49,9 @@ def main():
 
 def on_message(message, client):
     if isinstance(message, chatexchange.events.MessagePosted):
+      print "MESSAGE"
       if message.content.startswith(":pull"):
-        print("USER PULL: "+message.user.id)
+        print "USER PULL: "+message.user.id
         if message.user.id == 3285730:
           os._exit(3)
 
