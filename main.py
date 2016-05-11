@@ -36,18 +36,16 @@ def main():
   
   room.watch(on_message)
   
+  while True:
+    message = raw_input("<< ")
+      if message == "die":
+        room.send_message("Shutting down...")
+        time.sleep(0.4)
+        break
+      else:
+        room.send_message(message)
 
-  def ex():
-    x = raw_input(">_ ")
-    if x != "exit":
-      client.logout()
-    else:
-      ex()
-      
-  ex()
-
-  
-
+    os._exit(6)
 
 def on_message(message, client):
     if isinstance(message, chatexchange.events.MessagePosted):
