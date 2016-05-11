@@ -71,10 +71,9 @@ def on_message(message, client):
     elif command == "join":
       room_id = int(message.content.split()[2])
       r = bot.join(client, room_id, on_message)
-      r.send_message("Hey guys, I joined by request of [@"+message.user.name.replace(" ","")+"](http://stackoverflow.com/users/"+str(message.user.id)+")")
+      r.send_message("Hey guys, I joined by request of ["+message.user.name+"](http://stackoverflow.com/users/"+str(message.user.id)+")")
       message.message.reply("I am now listening in room [`#"+str(room_id)+"`](http://chat.stackoverflow.com/rooms/"+str(room_id)+")")
     elif command == "leave":
-      print message.room.id
       bot.leave(message.room.id)
     else:
       message.message.reply("`"+message.content+"` isn't a valid command.")
