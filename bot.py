@@ -1,17 +1,15 @@
-
 import ChatExchange.chatexchange.client
 import ChatExchange.chatexchange.events
-import ChatExchange.chatexchange.browser
 
-class Bot(object):
-    
-    url = ""
-    rooms = []
-    
-    #Join a room
-    def join(id):
-      return url
+global rooms = {}
 
-    # The class "constructor" - It's actually an initializer 
-    def __init__(self, url):
-        self.url = url
+def join(client, room_id, listen):
+  room = client.get_room(room_id)
+  room.join()
+  room.watch(listen)
+  rooms[room_id] = room
+
+def leave(room_id):
+    rooms[room_id].leave(room_id)
+    del rooms[room_id]
+    
