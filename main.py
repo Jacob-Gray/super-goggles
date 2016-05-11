@@ -25,6 +25,9 @@ def main():
     password = os.environ['ChatExchangeP']
   else:
     password = raw_input(">> What is your password? \n")
+    
+  if "first_start" in sys.argv:
+    room.send_message("Super-goggles is up! running on commit: " + os.popen('git log --pretty=format:"%h" -n 1').read() + ")")
   
   client = user.user("stackoverflow.com",email,password);
   
