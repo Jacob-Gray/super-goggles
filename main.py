@@ -33,17 +33,8 @@ def main():
 
 
 def on_message(message, client):
-    if not isinstance(message, chatexchange.events.MessagePosted):
-        # Ignore non-message_posted events.
-        logger.debug("event: %r", message)
-        return
-
-    print ""
-    print ">> (%s) %s" % (message.user.name, message.content)
-    if message.content.startswith('!!/random'):
-        print message
-        print "Spawning thread"
-        message.message.reply(str(random.random()))
+    if isinstance(message, chatexchange.events.UserNotification):
+      message.message.reply("Y U PING ME?!!")
 
 #Yay, logging!
  
