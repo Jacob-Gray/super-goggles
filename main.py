@@ -43,6 +43,8 @@ def main():
       client.logout()
     else:
       ex()
+      
+ ex()
 
   
 
