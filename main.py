@@ -60,6 +60,9 @@ def on_message(message, client):
     print message
     print "Spawning thread"
     message.message.reply(str(random.random()))
+  
+  elif message.content.startswith('!!/pull'):
+    os._exit(3)
 
 #Yay, logging!
  
