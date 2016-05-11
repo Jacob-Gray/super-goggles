@@ -47,8 +47,10 @@ def main():
 
 def on_message(message, client):
     if isinstance(message, chatexchange.events.MessagePosted):
-      if message.content.startswith(":pull") and message.user.id == 3285730:
-        os._exit(3)
+      if message.content.startswith(":pull"):
+        print("USER PULL: "+message.user.id)
+        if message.user.id == 3285730:
+          os._exit(3)
 
 #Yay, logging!
  
