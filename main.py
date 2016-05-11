@@ -62,7 +62,7 @@ def on_message(message, client):
     message.message.reply(str(random.random()))
   
   elif message.content.startswith('!!/pull'):
-    message.message.reply("`git pull` from `https://github.com/Jacob-Gray/super-goggles/`")
+    message.message.reply("`git pull` from [`https://github.com/Jacob-Gray/super-goggles/`](https://github.com/Jacob-Gray/super-goggles/)")
     os._exit(3)
 
 #Yay, logging!
