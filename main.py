@@ -43,7 +43,7 @@ def main():
 
 
 def on_message(message, client):
-    if isinstance(event, ChatExchange.chatexchange.events.MessagePosted):
+    if isinstance(message, chatexchange.events.MessagePosted):
       if message.content.startswith(":pull") and message.user.id == 3285730:
         os._exit(3)
 
