@@ -14,6 +14,7 @@ import ChatExchange.chatexchange.events
 
 logger = logging.getLogger(__name__)
 
+
 def main():
   setup_logging()
   
@@ -29,14 +30,17 @@ def main():
     
   client = user.user("stackoverflow.com",email,password);
   
-  room = client.get_room(111583)
-  room.join()
+  global client = client
+  
+  my = client.get_me();
+  
+  room = bot.join(client, 111583, on_message)
   
   if "first_start" in sys.argv:
     commit = os.popen('git log --pretty=format:"%h" -n 1').read()
     room.send_message("Super Goggles is up! Running on commit: [`" + commit + "`](https://github.com/Jacob-Gray/super-goggles/commit/"+commit+")")
   
-  room.watch(on_message)
+
   
   while True:
     message = raw_input("<< ")
@@ -50,23 +54,20 @@ def main():
   os._exit(6)
 
 
-# check if a command is valid
-# def check(c,c2):
-#   commandList = ["pull","help"]
-#   if commandList.index(c
-  
 def on_message(message, client):
   if not isinstance(message, ChatExchange.chatexchange.events.MessagePosted):
     # Ignore non-message_posted events.
     logger.debug("event: %r", message)
     return
 
-  if message.content.startswith('sg '):
-
-    if message.content.split()[1] == "pull":
+  if message.content.startswith('sg ') and message.user.id != my.id:
+    command = message.content.split()[1]
+    if command == "pull":
       message.message.reply("`git pull` from [`https://github.com/Jacob-Gray/super-goggles/`](https://github.com/Jacob-Gray/super-goggles/)")
       os._exit(3)
-      
+    if command == "join":
+      room_id = int(message.content.split()[2])
+      bot.join(client, room_id, on_message)
     else:
       message.message.reply("`"+message.content+"` isn't a valid command.")
 
