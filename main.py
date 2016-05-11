@@ -11,11 +11,16 @@ import time
 import ChatExchange.chatexchange.client
 import ChatExchange.chatexchange.events
 
+client = None
+my = None
 
 logger = logging.getLogger(__name__)
 
 
 def main():
+  
+  global client
+  
   setup_logging()
   
   if 'ChatExchangeU' in os.environ:
@@ -29,9 +34,6 @@ def main():
     password = raw_input(">> What is your password? \n")
     
   client = user.user("stackoverflow.com",email,password);
-  
-  global client = client
-  
   my = client.get_me();
   
   room = bot.join(client, 111583, on_message)
