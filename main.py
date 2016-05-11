@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 def main():
   
   global client
+  global my
   
   setup_logging()
   
