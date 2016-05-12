@@ -116,7 +116,7 @@ def on_message(message, client):
       message.message.reply("You aren't a privileged users. You can request access with `sg request priv`.");
     else:
       if command == "alive":
-        message.message.alive("I'm currently running in this room")
+        message.message.reply("I'm currently running in this room")
 
     
 
