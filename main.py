@@ -112,8 +112,11 @@ def on_message(message, client):
       else:
         message.message.reply("`"+message.content+"` isn't a valid command.")
     
-    else:
+    elif command in priv_commands:
       message.message.reply("You aren't a privileged users. You can request access with `sg request priv`.");
+    else:
+      if command == "alive":
+        message.message.alive("I'm currently running in this room")
 
     
 
