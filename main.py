@@ -79,7 +79,7 @@ def on_message(message, client):
       bot.leave(message.room.id)
       
     elif command == "priv":
-      user_id = int(message.content.split()[1])
+      user_id = int(message.content.split()[2])
       user.setPrivileged(user_id)
       message.message.reply("That user now has privileges")
     else:
