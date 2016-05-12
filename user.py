@@ -34,7 +34,7 @@ def setPrivileged(user_id, room_id, host_id):
     return 1
     
   else:
-    priv_users[host_id + room_id].append(user_id)
+    priv_users[host_id + room_id] += [user_id]
     priv_users.close()
     return 0
     
