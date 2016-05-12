@@ -13,6 +13,7 @@ import ChatExchange.chatexchange.events
 
 client = None
 my = None
+host_id = ""
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +22,9 @@ def main():
   
   global client
   global my
+  global host_id
   
+  host_id = "stackoverflow.com"
   setup_logging()
   
   if 'ChatExchangeU' in os.environ:
@@ -34,7 +37,7 @@ def main():
   else:
     password = raw_input(">> What is your password? \n")
     
-  client = user.user("stackoverflow.com",email,password);
+  client = user.user(host_id, email, password);
   my = client.get_me();
   
   room = bot.join(client, 111583, on_message)
@@ -79,8 +82,8 @@ def on_message(message, client):
       bot.leave(message.room.id)
       
     elif command == "priv":
-      user_id = int(message.content.split()[2])
-      user.setPrivileged(user_id)
+      user_id = message.content.split()[2]
+      user.setPrivileged(user_id, str(message.room.id), host_id)
       message.message.reply("That user now has privileges")
     else:
       message.message.reply("`"+message.content+"` isn't a valid command.")
