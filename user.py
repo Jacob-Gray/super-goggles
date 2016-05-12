@@ -48,12 +48,9 @@ def removePrivileged(user_id, room_id, host_id):
     
   if user_id in priv_users[host_id + room_id]:
     i = priv_users[host_id + room_id].index(user_id)
-    print "-------"
-    print "REMOVED USER " + priv_users[host_id + room_id][i]
-    print priv_users[host_id + room_id].pop(i)
-    print "__________"
-    print "Users "+str(priv_users[host_id + room_id])
-    print "INDEX: "+str(i)
+    ar = priv_users[host_id + room_id]
+    del ar[i]
+    priv_users[host_id + room_id] = ar
     priv_users.close()
     return 0
     
