@@ -11,7 +11,7 @@ def user(host, email, password):
 def privileged(user_id):
   priv_users = open('privileged.json',"r")
   users = json.load(priv_users)
-  if users[user_id]:
+  if users[user_id] == 0:
     return True
   else:
     return False
@@ -19,7 +19,6 @@ def privileged(user_id):
 #sets user as privileged
 def setPrivileged(user_id):
   priv_users = open('privileged.json',"w+")
-  print priv_users
   users = json.load(priv_users)
-  users[user_id] = True
+  users[user_id] = 0
   priv_users.write(json.dumps(users))
