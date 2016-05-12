@@ -63,8 +63,7 @@ def main():
 
 def on_message(message, client):
   
-  commands = {}
-  commands.priv = ["pull","join","leave","priv"]
+  priv_commands = ["pull","join","leave","priv"]
   
   S_user_id = str(message.user.id)
   S_room_id = str(message.room.id)
@@ -81,7 +80,7 @@ def on_message(message, client):
     
     command = message.content.split()[1]
     
-    if user.privileged(S_user_id, S_room_id, host_id) and command in commands.priv:
+    if user.privileged(S_user_id, S_room_id, host_id) and command in priv_commands:
       
       if command == "pull":
         message.message.reply("`git pull` from [`https://github.com/Jacob-Gray/super-goggles/`](https://github.com/Jacob-Gray/super-goggles/)")
