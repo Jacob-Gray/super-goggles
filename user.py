@@ -18,7 +18,7 @@ def privileged(user_id):
     
 #sets user as privileged
 def setPrivileged(user_id):
-  priv_users = open('privileged.json',"w")
+  priv_users = open('privileged.json',"w+")
   users = json.load(priv_users)
   users[user_id] = True
   priv_users.write(json.dumps(users))
