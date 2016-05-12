@@ -91,6 +91,7 @@ def on_message(message, client):
         room_id = int(message.content.split()[2])
         
         r = bot.join(client, room_id, on_message)
+        user.setPrivileged(S_user_id, S_message_id, host_id)
         
         r.send_message("Hey guys, I joined at request of ["+message.user.name+"](http://stackoverflow.com/users/"+str(message.user.id)+")")
         message.message.reply("I am now listening in room [`#"+str(room_id)+"`](http://chat.stackoverflow.com/rooms/"+str(room_id)+")")
@@ -100,13 +101,13 @@ def on_message(message, client):
         bot.leave(message.room.id)
         
       elif command == "priv":
-        user_id = message.content.split()[2]
-        priv = user.setPrivileged(user_id, str(message.room.id), host_id)
+        user = message.content.split()[2]
+        priv = user.setPrivileged(user, S_message_id, host_id)
         if priv == 0:
-          message.message.reply("User [`#"+user_id+"`](http://"+host_id+"/users/"+user_id+") is now a privileged user in this room")
+          message.message.reply("User [`#"+user+"`](http://"+host_id+"/users/"+user+") is now a privileged user in this room")
           
         elif priv == 1:
-          message.message.reply("User [`#"+user_id+"`](http://"+host_id+"/users/"+user_id+") is already a privileged user in this room")
+          message.message.reply("User [`#"+user+"`](http://"+host_id+"/users/"+user+") is already a privileged user in this room")
           
       else:
         message.message.reply("`"+message.content+"` isn't a valid command.")
