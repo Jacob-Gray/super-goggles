@@ -53,7 +53,7 @@ def removePrivileged(user_id, room_id, host_id):
     del priv_users[host_id + room_id][i]
     print "__________"
     print "Users "+str(priv_users[host_id + room_id])
-    print "INDEX: "+i
+    print "INDEX: "+str(i)
     priv_users.close()
     return 0
     
