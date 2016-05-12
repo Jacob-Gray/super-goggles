@@ -73,9 +73,15 @@ def on_message(message, client):
       r = bot.join(client, room_id, on_message)
       r.send_message("Hey guys, I joined at request of ["+message.user.name+"](http://stackoverflow.com/users/"+str(message.user.id)+")")
       message.message.reply("I am now listening in room [`#"+str(room_id)+"`](http://chat.stackoverflow.com/rooms/"+str(room_id)+")")
+    
     elif command == "leave":
       message.message.reply("Okay, I'm leaving.")
       bot.leave(message.room.id)
+      
+    elif command == "priv":
+      user_id = int(message.content.split()[1])
+      user.setPrivileged(user_id)
+      message.message.reply("That user now has privileges")
     else:
       message.message.reply("`"+message.content+"` isn't a valid command.")
 
