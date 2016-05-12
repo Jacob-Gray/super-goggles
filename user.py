@@ -8,7 +8,7 @@ def user(host, email, password):
   return client
   
 #check if user is privileged
-def privileged(user_id){
+def privileged(user_id):
   priv_users = open('privileged.json',"r")
   users = json.load(priv_users)
   if users[user_id]:
