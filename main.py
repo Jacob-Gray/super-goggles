@@ -60,7 +60,11 @@ def main():
   os._exit(6)
 
 
+
 def on_message(message, client):
+  
+  commands = {}
+  commands.priv = ["pull","join","leave","priv"]
   
   S_user_id = str(message.user.id)
   S_room_id = str(message.room.id)
@@ -77,7 +81,7 @@ def on_message(message, client):
     
     command = message.content.split()[1]
     
-    if user.privileged(S_user_id, S_room_id, host_id):
+    if user.privileged(S_user_id, S_room_id, host_id) and command in commands.priv:
       
       if command == "pull":
         message.message.reply("`git pull` from [`https://github.com/Jacob-Gray/super-goggles/`](https://github.com/Jacob-Gray/super-goggles/)")
@@ -107,6 +111,9 @@ def on_message(message, client):
           
       else:
         message.message.reply("`"+message.content+"` isn't a valid command.")
+    
+    else:
+      message.message.reply("You aren't a privileged users. You can request access with `sg request priv`.");
 
     
 
