@@ -91,7 +91,7 @@ def on_message(message, client):
         room_id = int(message.content.split()[2])
         
         r = bot.join(client, room_id, on_message)
-        user.setPrivileged(S_user_id, S_message_id, host_id)
+        user.setPrivileged(S_user_id, S_room_id, host_id)
         
         r.send_message("Hey guys, I joined at request of ["+message.user.name+"](http://stackoverflow.com/users/"+str(message.user.id)+")")
         message.message.reply("I am now listening in room [`#"+str(room_id)+"`](http://chat.stackoverflow.com/rooms/"+str(room_id)+")")
@@ -102,7 +102,7 @@ def on_message(message, client):
         
       elif command == "priv":
         tmp_user = message.content.split()[2]
-        priv = user.setPrivileged(user, S_message_id, host_id)
+        priv = user.setPrivileged(user, S_room_id, host_id)
         if priv == 0:
           message.message.reply("User [`#"+user+"`](http://"+host_id+"/users/"+user+") is now a privileged user in this room")
           
