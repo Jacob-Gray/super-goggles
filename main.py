@@ -88,13 +88,13 @@ def on_message(message, client):
         
       elif command == "join":
         
-        room_id = int(message.content.split()[2])
+        room_id = message.content.split()[2]
         
-        r = bot.join(client, room_id, on_message)
-        user.setPrivileged(S_user_id, S_room_id, host_id)
+        r = bot.join(client, int(room_id), on_message)
+        user.setPrivileged(S_user_id, room_id, host_id)
         
         r.send_message("Hey guys, I joined at request of ["+message.user.name+"](http://stackoverflow.com/users/"+str(message.user.id)+")")
-        message.message.reply("I am now listening in room [`#"+str(room_id)+"`](http://chat.stackoverflow.com/rooms/"+str(room_id)+")")
+        message.message.reply("I am now listening in room [`#"+room_id+"`](http://chat.stackoverflow.com/rooms/"+room_id+")")
       
       elif command == "leave":
         message.message.reply("Okay, I'm leaving.")
