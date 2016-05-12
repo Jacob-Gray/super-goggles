@@ -1,5 +1,6 @@
 import ChatExchange.chatexchange.client
 import json
+import shelve
 
 #Login
 def user(host, email, password):
@@ -8,17 +9,33 @@ def user(host, email, password):
   return client
   
 #check if user is privileged
-def privileged(user_id):
-  priv_users = open('privileged.json',"r")
-  users = json.load(priv_users)
-  if users[user_id] == 0:
+def privileged(user_id, room_id, host_id):
+  
+  priv_users = shelve.open("privileged_users.txt")
+  
+  if user_id in priv_users[host_id + room_id]:
+    priv_users.close()
     return True
+    
   else:
+    priv_users.close()
     return False
     
 #sets user as privileged
-def setPrivileged(user_id):
-  priv_users = open('privileged.json',"w+")
-  users = json.load(priv_users)
-  users[user_id] = 0
-  priv_users.write(json.dumps(users))
+def setPrivileged(user_id, room_id, host_id):
+  
+  priv_users = shelve.open("privileged_users.txt")
+  
+  if (host_id + room_id) not in priv_users:
+    priv_users[host_id + room_id] = []
+    
+  if user_id in priv_users[host_id + room_id]:
+    priv_users.close()
+    return 1
+    
+  else:
+    priv_users[host_id + room_id] += [user_id]
+    priv_users.close()
+    return 0
+    
+
