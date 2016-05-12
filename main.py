@@ -111,7 +111,7 @@ def on_message(message, client):
           elif priv == 1:
             message.message.reply("User [`#"+tmp_user+"`](http://"+host_id+"/users/"+tmp_user+") isn't a privileged user in this room")
         elif tmp_user == "users":
-          message.message.reply(user.getPriv(host_id, S_room_id) 
+          message.message.reply(user.getPriv(host_id, S_room_id))
         else:
           priv = user.setPrivileged(tmp_user, S_room_id, host_id)
           if priv == 0:
