@@ -11,7 +11,7 @@ def user(host, email, password):
 #check if user is privileged
 def privileged(user_id, room_id, host_id):
   
-  priv_users = shelve.open("privileged_users.txt")
+  priv_users = shelve.open("privileged_users.db")
   
   if user_id in priv_users[host_id + room_id]:
     priv_users.close()
@@ -24,7 +24,7 @@ def privileged(user_id, room_id, host_id):
 #sets user as privileged
 def setPrivileged(user_id, room_id, host_id):
   
-  priv_users = shelve.open("privileged_users.txt")
+  priv_users = shelve.open("privileged_users.db")
   
   if (host_id + room_id) not in priv_users:
     priv_users[host_id + room_id] = []
