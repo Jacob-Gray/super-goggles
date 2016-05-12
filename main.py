@@ -101,7 +101,7 @@ def on_message(message, client):
         bot.leave(message.room.id)
         
       elif command == "priv":
-        user = message.content.split()[2]
+        tmp_user = message.content.split()[2]
         priv = user.setPrivileged(user, S_message_id, host_id)
         if priv == 0:
           message.message.reply("User [`#"+user+"`](http://"+host_id+"/users/"+user+") is now a privileged user in this room")
