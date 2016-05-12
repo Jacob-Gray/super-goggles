@@ -56,4 +56,11 @@ def removePrivileged(user_id, room_id, host_id):
     priv_users.close()
     return 1
     
+def getPriv(host_id, room_id):
+  out = ""
+  priv_users = shelve.open("privileged_users.db")
+  for x in priv_users[host_id + room_id]:
+    out +=" [`#"+x+"`](http://"+host_id+"/users/"+x+"),"
+  out = out[:-1]
+  return out
 
