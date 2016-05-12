@@ -38,4 +38,22 @@ def setPrivileged(user_id, room_id, host_id):
     priv_users.close()
     return 0
     
+#sets user as privileged
+def removePrivileged(user_id, room_id, host_id):
+  
+  priv_users = shelve.open("privileged_users.db")
+  
+  if (host_id + room_id) not in priv_users:
+    priv_users[host_id + room_id] = []
+    
+  if user_id in priv_users[host_id + room_id]:
+    i = priv_users[host_id + room_id].index(user_id)
+    del priv_users[host_id + room_id][i]
+    priv_users.close()
+    return 0
+    
+  else:
+    priv_users.close()
+    return 1
+    
 
