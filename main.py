@@ -102,12 +102,22 @@ def on_message(message, client):
         
       elif command == "priv":
         tmp_user = message.content.split()[2]
-        priv = user.setPrivileged(tmp_user, S_room_id, host_id)
-        if priv == 0:
-          message.message.reply("User [`#"+tmp_user+"`](http://"+host_id+"/users/"+tmp_user+") is now a privileged user in this room")
-          
-        elif priv == 1:
-          message.message.reply("User [`#"+tmp_user+"`](http://"+host_id+"/users/"+tmp_user+") is already a privileged user in this room")
+        if tmp_user == "rm":
+          tmp_user = message.content.split()[3]
+          priv = user.removePrivileged(tmp_user, S_room_id, host_id) 
+          if priv == 0:
+            message.message.reply("User [`#"+tmp_user+"`](http://"+host_id+"/users/"+tmp_user+") is no longer a privileged user in this room")
+            
+          elif priv == 1:
+            message.message.reply("User [`#"+tmp_user+"`](http://"+host_id+"/users/"+tmp_user+") isn't a privileged user in this room")
+
+        else:
+          priv = user.setPrivileged(tmp_user, S_room_id, host_id)
+          if priv == 0:
+            message.message.reply("User [`#"+tmp_user+"`](http://"+host_id+"/users/"+tmp_user+") is now a privileged user in this room")
+            
+          elif priv == 1:
+            message.message.reply("User [`#"+tmp_user+"`](http://"+host_id+"/users/"+tmp_user+") is already a privileged user in this room")
           
       else:
         message.message.reply("`"+message.content+"` isn't a valid command.")
