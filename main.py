@@ -103,10 +103,10 @@ def on_message(message, client):
         user_id = message.content.split()[2]
         priv = user.setPrivileged(user_id, str(message.room.id), host_id)
         if priv == 0:
-          message.message.reply("User ["+user_id+"](http://"+host_id+"/users/"+user_id+") is now a privileged user in this room")
+          message.message.reply("User [`#"+user_id+"`](http://"+host_id+"/users/"+user_id+") is now a privileged user in this room")
           
         elif priv == 1:
-          message.message.reply("User ["+user_id+"](http://"+host_id+"/users/"+user_id+") is already a privileged user in this room")
+          message.message.reply("User [`#"+user_id+"`](http://"+host_id+"/users/"+user_id+") is already a privileged user in this room")
           
       else:
         message.message.reply("`"+message.content+"` isn't a valid command.")
