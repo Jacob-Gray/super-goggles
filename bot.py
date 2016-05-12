@@ -11,7 +11,6 @@ def join(client, room_id, listen):
   return room
 
 def leave(room_id):
-  print rooms[room_id]
-  rooms[room_id].leave(room_id)
+  rooms[room_id].leave()
   del rooms[room_id]
     
