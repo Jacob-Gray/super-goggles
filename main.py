@@ -40,7 +40,7 @@ def main():
   client = user.user(host_id, email, password);
   my = client.get_me();
   
-  room = bot.join(client, 111583, on_message)
+  room = bot.join(client, 113461, on_message)
   
   if "first_start" in sys.argv:
     commit = os.popen('git log --pretty=format:"%h" -n 1').read()
