@@ -19,7 +19,7 @@ def leave(message):
   bot.leave(message.room.id)
 
 
-command_dict = {"join":join,"leave":leave,"pull":pull}
+command_dict = {"leave":leave,"pull":pull}
 
 #Execute commands
 #Input: (command name, command input object)
