@@ -64,76 +64,21 @@ def main():
 
 def on_message(message, client):
   
-  priv_commands = ["pull","join","leave","priv"]
-  
-  S_user_id = str(message.user.id)
-  S_room_id = str(message.room.id)
-  
-  user_id = message.user.id
-  room_id = message.room.id
-  
   if not isinstance(message, ChatExchange.chatexchange.events.MessagePosted):
     # Ignore non-message_posted events.
     logger.debug("event: %r", message)
     return
   
-  if message.content.startswith('$ '):
-    commands.command["join"]()
-    
   if message.content.startswith('sg '):
-    
+  
     command = message.content.split()[1]
     
-    if user.privileged(S_user_id, S_room_id, host_id) and command in priv_commands:
-      
-      if command == "pull":
-        message.message.reply("`git pull` from [`https://github.com/Jacob-Gray/super-goggles/`](https://github.com/Jacob-Gray/super-goggles/)")
-        os._exit(3)
-        
-      elif command == "join":
-        
-        tmp_room = str(message.content.split()[2])
-        
-        r = bot.join(client, int(tmp_room), on_message)
-        user.setPrivileged(S_user_id, tmp_room, host_id)
-        
-        r.send_message("Hey guys, I joined at request of ["+message.user.name+"](http://stackoverflow.com/users/"+str(message.user.id)+")")
-        message.message.reply("I am now listening in room [`#"+tmp_room+"`](http://chat.stackoverflow.com/rooms/"+tmp_room+")")
-      
-      elif command == "leave":
-        message.message.reply("Okay, I'm leaving.")
-        bot.leave(message.room.id)
-        
-      elif command == "priv":
-        tmp_user = message.content.split()[2]
-        if tmp_user == "rm":
-          tmp_user = message.content.split()[3]
-          priv = user.removePrivileged(tmp_user, S_room_id, host_id) 
-          if priv == 0:
-            message.message.reply("User [`#"+tmp_user+"`](http://"+host_id+"/users/"+tmp_user+") is no longer a privileged user in this room")
-            
-          elif priv == 1:
-            message.message.reply("User [`#"+tmp_user+"`](http://"+host_id+"/users/"+tmp_user+") isn't a privileged user in this room")
-        elif tmp_user == "users":
-          message.message.reply(user.getPriv(host_id, S_room_id))
-        else:
-          priv = user.setPrivileged(tmp_user, S_room_id, host_id)
-          if priv == 0:
-            message.message.reply("User [`#"+tmp_user+"`](http://"+host_id+"/users/"+tmp_user+") is now a privileged user in this room")
-            
-          elif priv == 1:
-            message.message.reply("User [`#"+tmp_user+"`](http://"+host_id+"/users/"+tmp_user+") is already a privileged user in this room")
-          else:
-            message.message.reply("`"+message.content+"` isn't a valid command.")
-
+    executed = commands.exe(command, message)
     
-    elif command in priv_commands:
-      message.message.reply("You aren't a privileged users. You can request access with `sg request priv`.");
-    else:
-      if command == "alive":
-        message.message.reply("I'm currently running in this room")
-      else:
-        message.message.reply("`"+message.content+"` isn't a valid command.")
+    if executed:
+      message.message.reply("`"+command+"` isn't a valid command")
+    
+
 
     
 
