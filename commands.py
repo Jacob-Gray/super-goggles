@@ -39,7 +39,7 @@ def info(message):
         out += " & " + str(i)
       else:
         out += ", " + str(i)
-      ot++
+      ot+=1
     
     message.message.reply(out)
       
