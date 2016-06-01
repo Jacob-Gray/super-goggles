@@ -33,13 +33,17 @@ def info(message):
       out += "s"
     ot = 0
     for i in bot.rooms:
+      RoomID = str(i)
+      HostID = main.host_id
       if ot == 0:
-        out += " " + str(i)
-      elif ot == bl-1:
-        out += " & " + str(i)
+        out += " "
+      elif ot == bl - 1:
+        out += " & "
       else:
-        out += ", " + str(i)
-      ot+=1
+        out += ", "
+        
+      out += "[`#%s`](http://chat.%s/rooms/%s)" % (RoomID, HostID, RoomID)
+      ot += 1
     
     message.message.reply(out)
       
@@ -58,9 +62,12 @@ def info(message):
 #<eg> commands.exe("join", message)
 def join(message):
     tmp_room = str(message.content.split()[2])
-    r = bot.join(user.globalClient, int(tmp_room), main.on_message)
-    r.send_message("Hey guys, I joined at request of ["+message.user.name+"](http://stackoverflow.com/users/"+str(message.user.id)+")")
-    message.message.reply("I am now listening in room [`#"+tmp_room+"`](http://chat.stackoverflow.com/rooms/"+tmp_room+")")
+    r = bot.join(main.client, int(tmp_room), main.on_message)
+    if r != 0:
+      r.send_message("Hey guys, I joined at request of ["+message.user.name+"](http://"+main.host_id+"/users/"+str(message.user.id)+")")
+      message.message.reply("I am now listening in room [`#"+tmp_room+"`](http://chat."+main.host_id+"/rooms/"+tmp_room+")")
+    else:
+      message.message.reply("I'm already in that room")
 
 command_dict = {"leave":leave,"pull":pull,"join":join,"info":info}
 
