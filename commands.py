@@ -28,14 +28,16 @@ def info(message):
   def rooms():
     out = "Super Goggles is currently listening in room"
     bl = len(bot.rooms)
+    
     if bl > 1:
       out += "s"
     
-    for i in range(bl):
-      if i == bl - 1:
-        out += " & " + bot.rooms[i]
-      else:
-        out += ", " + bot.rooms[i]
+    for i in bot.rooms:
+      out += ", " + i
+    
+    li = out.rindex(',')
+    out[li] = "&"
+    message.message.reply(out)
       
       
       
