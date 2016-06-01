@@ -38,10 +38,10 @@ def main():
   else:
     password = raw_input(">> What is your password? \n")
     
-  client = user.user(host_id, email, password);
-  my = client.get_me();
+  client = user.user(host_id, email, password)
+  my = client.get_me()
   
-  room = bot.join(client, 113461, on_message)
+  room = bot.join(client, 113461, chat_event)
   
   if "first_start" in sys.argv:
     commit = os.popen('git log --pretty=format:"%h" -n 1').read()
@@ -61,22 +61,20 @@ def main():
   os._exit(6)
 
 
-
-def on_message(message, client):
-  
+def chat_event(message, client):
   if not isinstance(message, ChatExchange.chatexchange.events.MessagePosted):
     # Ignore non-message_posted events.
     logger.debug("event: %r", message)
     return
-  
   if message.content.startswith('sg '):
-  
-    command = message.content.split()[1]
-    
-    executed = commands.exe(command, message)
-    
-    if not executed:
-      message.message.reply("`"+command+"` isn't a valid command")
+    on_command(message, client)
+
+
+def on_command(message, client):
+  command = message.content.split()[1]
+  executed = commands.exe(command, message)
+  if not executed:
+    message.message.reply("`"+command+"` isn't a valid command")
     
 
 
