@@ -10,6 +10,8 @@ def join(client, room_id, listen):
     room.watch(listen)
     rooms[room_id] = room
     return room
+  else:
+    return 0
 
 def leave(room_id):
   rooms[room_id].leave()
