@@ -2,10 +2,17 @@ import ChatExchange.chatexchange.client
 import json
 import shelve
 
+globalClient = None
 #Login
 def user(host, email, password):
+  
+  global globalClient
+  
   client = ChatExchange.chatexchange.client.Client(host)
   client.login(email, password)
+  
+  globalClient = client
+  
   return client
   
 #check if user is privileged
