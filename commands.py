@@ -19,6 +19,9 @@ def leave(message):
   message.message.reply("Okay, I'm leaving.")
   bot.leave(message.room.id)
 
+#`join` Command
+#required_info: message
+#<eg> commands.exe("join", message)
 def join(message):
     tmp_room = str(message.content.split()[2])
     r = bot.join(user.globalClient, int(tmp_room), main.on_message)
@@ -29,7 +32,7 @@ command_dict = {"leave":leave,"pull":pull,"join":join}
 
 #Execute commands
 #Input: (command name, command input object)
-#<eg> commands.exe("join",[Object])
+#<eg> commands.exe("join",message)
 #Output: True or False
 #True means the command was executed, False means it doesn't exist
 def exe(command, required_info):
