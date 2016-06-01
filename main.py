@@ -75,7 +75,7 @@ def on_message(message, client):
     
     executed = commands.exe(command, message)
     
-    if executed:
+    if not executed:
       message.message.reply("`"+command+"` isn't a valid command")
     
 
