@@ -75,7 +75,10 @@ def on_message(message, client):
     # Ignore non-message_posted events.
     logger.debug("event: %r", message)
     return
-
+  
+  if message.content.startswith('$ '):
+    commands.command["join"]()
+    
   if message.content.startswith('sg '):
     
     command = message.content.split()[1]
