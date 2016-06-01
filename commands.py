@@ -31,14 +31,17 @@ def info(message):
     
     if bl > 1:
       out += "s"
-    
+    ot = 0
     for i in bot.rooms:
-      out += ", " + str(i)
+      if ot == 0:
+        out += " " + str(i)
+      elif ol == bl-1:
+        out += " & " + str(i)
+      else:
+        out += ", " + str(i)
+      ot++
     
-    outarray = list(out)
-    li = out.rindex(',')
-    outarray[li] = "&"
-    message.message.reply("".join(out))
+    message.message.reply(out)
       
       
       
