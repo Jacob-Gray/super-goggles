@@ -14,7 +14,7 @@ import ChatExchange.chatexchange.events
 
 client = None
 my = None
-host_id = ""
+host_id = "stackoverflow.com"
 
 logger = logging.getLogger(__name__)
 
