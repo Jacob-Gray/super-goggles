@@ -23,6 +23,7 @@ def info(message):
   infotype = str(message.content.split()[2])
   
   def users():
+    print "Okay"
     
   def rooms():
     out = "Super Goggles is currently listening in room"
