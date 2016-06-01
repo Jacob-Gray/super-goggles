@@ -60,9 +60,9 @@ def info(message):
 #`join` Command
 #required_info: message
 #<eg> commands.exe("join", message)
-def join(message):
+def join(message, client):
     tmp_room = str(message.content.split()[2])
-    r = bot.join(main.client, int(tmp_room), main.chat_event)
+    r = bot.join(client, int(tmp_room), main.chat_event)
     if r != 0:
       r.send_message("Hey guys, I joined at request of ["+message.user.name+"](http://"+main.host_id+"/users/"+str(message.user.id)+")")
       message.message.reply("I am now listening in room [`#"+tmp_room+"`](http://chat."+main.host_id+"/rooms/"+tmp_room+")")
@@ -72,13 +72,13 @@ def join(message):
 command_dict = {"leave":leave,"pull":pull,"join":join,"info":info}
 
 #Execute commands
-#Input: (command name, command input object)
+#Input: (command name, command input object, [Object Client])
 #<eg> commands.exe("join",message)
 #Output: True or False
 #True means the command was executed, False means it doesn't exist
-def exe(command, required_info):
+def exe(command, required_info, client):
   if command in command_dict:
-    command_dict[command](required_info)
+    command_dict[command](required_info, client)
     return True
   else:
     return False
