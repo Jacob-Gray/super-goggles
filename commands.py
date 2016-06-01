@@ -33,7 +33,7 @@ def info(message):
       out += "s"
     
     for i in bot.rooms:
-      out += ", " + i
+      out += ", " + str(i)
     
     li = out.rindex(',')
     out[li] = "&"
