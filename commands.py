@@ -41,6 +41,11 @@ def info(message):
       
     
   information = {"rooms":rooms,"users":users}
+  
+  if infotype in information:
+    information[infotype]()
+  else:
+    message.message.reply("`"+infotype+"` isn't a valid info type")
 
 #`join` Command
 #required_info: message
