@@ -62,7 +62,7 @@ def info(message):
 #<eg> commands.exe("join", message)
 def join(message):
     tmp_room = str(message.content.split()[2])
-    r = bot.join(main.client, int(tmp_room), main.on_message)
+    r = bot.join(main.client, int(tmp_room), main.chat_event)
     if r != 0:
       r.send_message("Hey guys, I joined at request of ["+message.user.name+"](http://"+main.host_id+"/users/"+str(message.user.id)+")")
       message.message.reply("I am now listening in room [`#"+tmp_room+"`](http://chat."+main.host_id+"/rooms/"+tmp_room+")")
