@@ -19,6 +19,28 @@ def leave(message):
   message.message.reply("Okay, I'm leaving.")
   bot.leave(message.room.id)
 
+def info(message):
+  infotype = str(message.content.split()[2])
+  
+  def users():
+    
+  def rooms():
+    out = "Super Goggles is currently listening in room"
+    bl = len(bot.rooms)
+    if bl > 1:
+      out += "s"
+    
+    for i in range(bl):
+      if i == bl - 1:
+        out += " & " + bot.rooms[i]
+      else:
+        out += ", " + bot.rooms[i]
+      
+      
+      
+    
+  information = {"rooms":rooms,"users":users}
+
 #`join` Command
 #required_info: message
 #<eg> commands.exe("join", message)
