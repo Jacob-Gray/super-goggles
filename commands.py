@@ -35,9 +35,10 @@ def info(message):
     for i in bot.rooms:
       out += ", " + str(i)
     
-    li = out.rindex(',')
-    out[li] = "&"
-    message.message.reply(out)
+    outarray = list(out)
+    li = outarray.rindex(',')
+    outarray[li] = "&"
+    message.message.reply("".join(out))
       
       
       
