@@ -8,18 +8,18 @@ import main
 #`pull` Command
 #required_info: message
 #<eg> commands.exe("pull", message)
-def pull(message):
+def pull(message, client):
   message.message.reply("`git pull` from [`https://github.com/Jacob-Gray/super-goggles/`](https://github.com/Jacob-Gray/super-goggles/)")
   os._exit(3)
 
 #`leave` Command
 #required_info: message
 #<eg> commands.exe("leave", message)
-def leave(message):
+def leave(message, client):
   message.message.reply("Okay, I'm leaving.")
   bot.leave(message.room.id)
 
-def info(message):
+def info(message, client):
   infotype = str(message.content.split()[2])
   
   def users():
