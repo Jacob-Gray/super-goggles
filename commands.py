@@ -18,8 +18,13 @@ def leave(message):
   message.message.reply("Okay, I'm leaving.")
   bot.leave(message.room.id)
 
+def join(message):
+    tmp_room = str(message.content.split()[2])
+    r = bot.join(user.globalClient, int(tmp_room), main.on_message)
+    r.send_message("Hey guys, I joined at request of ["+message.user.name+"](http://stackoverflow.com/users/"+str(message.user.id)+")")
+    message.message.reply("I am now listening in room [`#"+tmp_room+"`](http://chat.stackoverflow.com/rooms/"+tmp_room+")")
 
-command_dict = {"leave":leave,"pull":pull}
+command_dict = {"leave":leave,"pull":pull,"join",join}
 
 #Execute commands
 #Input: (command name, command input object)
