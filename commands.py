@@ -1,6 +1,7 @@
 import os
 import bot
 import user
+import main
 
 #Define a command as a function, then add it to `command_dict`
 
