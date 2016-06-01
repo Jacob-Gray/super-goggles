@@ -35,7 +35,7 @@ def info(message):
     for i in bot.rooms:
       if ot == 0:
         out += " " + str(i)
-      elif ol == bl-1:
+      elif ot == bl-1:
         out += " & " + str(i)
       else:
         out += ", " + str(i)
