@@ -6,6 +6,7 @@ import random
 import sys
 import bot
 import user
+import commands
 import time
 
 import ChatExchange.chatexchange.client
