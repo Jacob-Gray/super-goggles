@@ -51,7 +51,7 @@ def join(message):
     r.send_message("Hey guys, I joined at request of ["+message.user.name+"](http://stackoverflow.com/users/"+str(message.user.id)+")")
     message.message.reply("I am now listening in room [`#"+tmp_room+"`](http://chat.stackoverflow.com/rooms/"+tmp_room+")")
 
-command_dict = {"leave":leave,"pull":pull,"join":join}
+command_dict = {"leave":leave,"pull":pull,"join":join,"info":info}
 
 #Execute commands
 #Input: (command name, command input object)
