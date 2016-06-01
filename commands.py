@@ -36,7 +36,7 @@ def info(message):
       out += ", " + str(i)
     
     outarray = list(out)
-    li = outarray.rindex(',')
+    li = out.rindex(',')
     outarray[li] = "&"
     message.message.reply("".join(out))
       
