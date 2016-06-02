@@ -24,9 +24,10 @@ def info(message, client):
   
   def users():
     out = ""
-    users = bot.rooms[message.room.id].get_current_user_ids()
-    for i in users:
-      out += " %i " % (i)
+    userIDs = bot.rooms[message.room.id].get_current_user_ids()
+    userNames = bot.rooms[message.room.id].get_current_user_names()
+    for i in len(userIDs):
+      out += " %i %s " % (userIDs[i], userNames[i])
     message.message.reply(out)
     
   def rooms():
