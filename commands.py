@@ -42,8 +42,13 @@ def info(message, client):
       else:
         out += ", "
         
-      out += "[@%s](http://%s/users/%i)" % (UserName, HostID, UserID)
+      out += "[%s](http://%s/users/%i)" % (UserName, HostID, UserID)
       ot += 1
+    if bl > 1:
+      out += " are "
+    else:
+      out += " is "
+    out = "currently in this room"
     message.message.reply(out)
     
   def rooms():
