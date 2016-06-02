@@ -23,11 +23,27 @@ def info(message, client):
   infotype = str(message.content.split()[2])
   
   def users():
-    out = ""
+    out = "User"
     userIDs = bot.rooms[message.room.id].get_current_user_ids()
     userNames = bot.rooms[message.room.id].get_current_user_names()
-    for i in range(len(userIDs)):
-      out += " %i %s " % (userIDs[i], userNames[i])
+    bl = len(userIDs)
+    
+    if bl > 1:
+      out += "s"
+    ot = 0
+    for i in range(bl):
+      HostID = main.host_id
+      UserName = userNames[i]
+      UserID = userIDs[i]
+      if ot == 0:
+        out += " "
+      elif ot == bl - 1:
+        out += " & "
+      else:
+        out += ", "
+        
+      out += "[@%s](http://%s/users/%i)" % (UserName, HostID, UserID)
+      ot += 1
     message.message.reply(out)
     
   def rooms():
