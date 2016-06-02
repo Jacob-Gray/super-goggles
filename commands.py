@@ -26,7 +26,7 @@ def info(message, client):
     out = ""
     userIDs = bot.rooms[message.room.id].get_current_user_ids()
     userNames = bot.rooms[message.room.id].get_current_user_names()
-    for i in len(userIDs):
+    for i in range(len(userIDs)):
       out += " %i %s " % (userIDs[i], userNames[i])
     message.message.reply(out)
     
