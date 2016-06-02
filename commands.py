@@ -48,7 +48,7 @@ def info(message, client):
       out += " are "
     else:
       out += " is "
-    out = "currently in this room"
+    out += "currently in this room"
     message.message.reply(out)
     
   def rooms():
