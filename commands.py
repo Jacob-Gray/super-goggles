@@ -23,7 +23,11 @@ def info(message, client):
   infotype = str(message.content.split()[2])
   
   def users():
-    print "Okay"
+    out = ""
+    users = bot.rooms[message.room.id].get_current_user_ids()
+    for i in users:
+      out += " %i " % (i)
+    message.message.reply(out)
     
   def rooms():
     out = "Super Goggles is currently listening in room"
