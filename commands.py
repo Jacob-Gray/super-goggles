@@ -81,6 +81,8 @@ def info(message, client):
   
   if infotype in information:
     information[infotype]()
+  elif infotype == "":
+    message.message.reply("Please enter what you want information about")
   else:
     message.message.reply("`"+infotype+"` isn't a valid info type")
 

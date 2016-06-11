@@ -59,6 +59,8 @@ def main():
             room.send_message('Shutting down...')
             time.sleep(0.4)
             break
+        elif message == "pull":
+          os._exit(3)
         else:
             room.send_message(message)
 
