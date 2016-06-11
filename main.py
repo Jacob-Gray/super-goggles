@@ -11,6 +11,8 @@ import bot
 import user
 import commands
 import time
+import re
+import requests
 
 import ChatExchange.chatexchange.client
 import ChatExchange.chatexchange.events
@@ -59,8 +61,8 @@ def main():
             room.send_message('Shutting down...')
             time.sleep(0.4)
             break
-        elif message == "pull":
-          os._exit(3)
+        elif message == 'pull':
+            os._exit(3)
         else:
             room.send_message(message)
 
@@ -68,28 +70,38 @@ def main():
 
 
 def chat_event(message, client):
-    if not isinstance(message,
+    if isinstance(message,
                       ChatExchange.chatexchange.events.MessagePosted):
-
-    # Ignore non-message_posted events.
-
-        logger.debug('event: %r', message)
-        return
-    if message.content.startswith('sg '):
+      if message.content.startswith('sg '):
         on_command(message, client)
+    elif isinstance(message,ChatExchange.chatexchange.events.MessageReply):
+      on_keyword(message, client)
 
 
+
+
+def on_keyword(message, client):
+  if re.compile("^:[0-9]+ rm$").search(message.message.content_source):
+    message_to_delete = client.get_message(int(message.message.content_source.split(" ")[0][1:]))
+    try:
+      message_to_delete.delete()
+    except requests.HTTPError:
+      pass
+
+    client.get_message(int(message.message.content_source.split(" ")[0][1:]))
 def on_command(message, client):
     command = message.content.split()[1]
     executed = commands.exe(command, message, client)
     if not executed:
-      message.message.reply('`' + command + "` isn't a valid command")
+        message.message.reply('`' + command + "` isn't a valid command")
     elif executed != True:
-      couldbe = ""
-      for com in executed:
-        couldbe += "`"+com+"`, "
-      couldbe = couldbe[:-2]
-      message.message.reply('`' + command + "` isn't a valid command; did you mean: "+couldbe+"?")
+        couldbe = ''
+        for com in executed:
+            couldbe += '`' + com + '`, '
+        couldbe = couldbe[:-2]
+        message.message.reply('`' + command
+                              + "` isn't a valid command; did you mean: "
+                               + couldbe + '?')
 
 
 # Yay, logging!
