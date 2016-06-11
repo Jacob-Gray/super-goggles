@@ -81,7 +81,7 @@ def chat_event(message, client):
 
 
 def on_keyword(message, client):
-  if re.compile("^:[0-9]+ [rm|del|delete]$").search(message.message.content_source):
+  if re.compile("^:[0-9]+ (rm|del|delete)$").search(message.message.content_source):
     message_to_delete = client.get_message(int(message.message.content_source.split(" ")[0][1:]))
     try:
       message_to_delete.delete()
