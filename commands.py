@@ -2,6 +2,7 @@ import os
 import bot
 import user
 import main
+import difflib
 
 #Define a command as a function, then add it to `command_dict`
 
@@ -107,5 +108,9 @@ def exe(command, required_info, client):
     command_dict[command](required_info, client)
     return True
   else:
-    return False
+	close = get_close_matches(command, command_dict)
+    if not close:
+		return False
+	else:
+		return close
   
