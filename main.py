@@ -84,7 +84,7 @@ def on_command(message, client):
     executed = commands.exe(command, message, client)
     if not executed:
       message.message.reply('`' + command + "` isn't a valid command")
-    else if executed != True:
+    elif executed != True:
       couldbe = ""
       for com in executed:
         couldbe += "`"+com+"`, "
