@@ -87,7 +87,7 @@ def on_command(message, client):
       for com in executed:
         couldbe += "`"+com+"`, "
       couldbe = couldbe[:-2]
-      message.message.reply('`' + command + "` isn't a valid command, did you mean: "+couldbe+"?")
+      message.message.reply('`' + command + "` isn't a valid command; did you mean: "+couldbe+"?")
 
 
 # Yay, logging!
