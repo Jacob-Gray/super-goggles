@@ -21,7 +21,7 @@ def leave(message, client):
   bot.leave(message.room.id)
 
 def info(message, client):
-  infotype = str(message.content.split()[2])
+  infotype = str(message.content.split()[2] if len(message.content.split())>2 else "")
   
   def users():
     out = "User"
