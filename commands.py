@@ -108,7 +108,7 @@ def exe(command, required_info, client):
     command_dict[command](required_info, client)
     return True
   else:
-    close = get_close_matches(command, command_dict)
+    close = difflib.get_close_matches(command, command_dict)
     if not close:
       return False;
     else:
