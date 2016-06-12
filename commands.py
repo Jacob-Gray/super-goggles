@@ -121,6 +121,8 @@ def join(message, client):
 def about(message, client):
     message.message.reply('I am a Chat bot, built by [Jacob Gray](http://stackoverflow.com/users/3285730/jacob-gray) for the StackExchange Chats. You can find my source on [Github](https://github.com/Jacob-Gray/super-goggles/), and I am based of the [ChatExchange lib](https://github.com/Manishearth/ChatExchange). You can see my available commands by sending `sg help`.'
                           )
+def swim(message, client):
+  message.message.reply('!http://i.stack.imgur.com/qH6Ou.gif')
 
 
 command_dict = {
@@ -130,6 +132,7 @@ command_dict = {
     'info': info,
     'about': about,
     '': about,
+    'swim': swim
     }
 
 
