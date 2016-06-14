@@ -1,6 +1,6 @@
 #bot/commands - Guidelines
 The command dictionary is stored in `/commands/exe.py` and should be used like:
-```
+```python
 import commands
 
 commands.exe((String) Command Name, (Object) Message, (Object Client));
@@ -10,7 +10,7 @@ To add a command, create a file in the command directory, with the filename as t
 
 An example is below:
 
-```
+```python
 # example.py
 
 def exe(message, client):
